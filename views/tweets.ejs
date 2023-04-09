@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Search tweet !</title>
+  <style>
+    .tweet-align-container {
+      display: inline-flex;
+width: 100%;
+justify-content: space-between;
+align-content: space-between;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tweet-card {
+      flex: 1 1 auto;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px #ccc;
+      min-width: 300px;
+      max-width: 500px;
+      background-color: white;
+    }
+
+    .tweet-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background-color: #00669d;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0077b5;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button[type="submit"]:hover {
+      background-color: #00669d;
+    }
+
+    body {
+      background-color: #00669d;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class=" tweet-card flex-container">Tweets Searcher</h1>
+
+  <div class="tweet-card-container">
+    <% tweets.forEach(tweet=> { %>
+      <div class="tweet-card">
+        <div class="tweet-align-container">
+          <p><strong>@<%= tweet.user.name %></strong></p>
+          <p>
+            <%= tweet.date %>
+          </p>
+          <img style="border-radius: 50%
+          ;" src="<%= tweet.profileImageUrl %>">
+        </div>
+
+
+        <p>
+          <%= tweet.text %>
+        </p>
+
+        <div class="tweet-align-container">
+          <div>
+            <%= tweet.retweets %> retweets
+          </div>
+          <div>
+            <%= tweet.likes %> likes
+          </div>
+          <div>
+            <%= tweet.views %> replies
+          </div>
+        </div>
+
+      </div>
+      <% }); %>
+  </div>
+
+
+
+  <form style="display: flex; justify-content: center;align-items: center;" action="/tweets" method="get">
+    <label for="query"></label>
+    <input type="text" id="query" name="query">
+    <button type="submit">Rechercher</button>
+  </form>
+</body>
+
+</html>
